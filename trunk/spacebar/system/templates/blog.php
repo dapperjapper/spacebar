@@ -18,7 +18,7 @@ $title = get_block_data($db, $page['id'], "title", false);
 <title><?=$title;?></title>
 </head>
 <body>
-<h1 class="editable" id="title" ><?=$title;?></h1><?=edit_link($page['id'], 'title');?>
+<h1 class="editable-notextile" id="title" ><?=$title;?></h1><?=edit_link($page['id'], 'title');?>
 <ul>
 <?php
 foreach ($subpages as $subpage) {

@@ -6,12 +6,16 @@ $db = db_connection();
 if (logged_in()) {
   if (isset($_REQUEST['pageid']) && isset($_REQUEST['id'])) {
     if (isset($_REQUEST['value'])) {
-			change_block($db, $_REQUEST['pageid'], $_REQUEST['id'], $_REQUEST['value']);
+      change_block($db, $_REQUEST['pageid'], $_REQUEST['id'], $_REQUEST['value']);
       //If it's not ajax
       if (!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) != 'xmlhttprequest') {
         header("Location: edit.php?id=" . $_REQUEST['id'] . "&pageid=" . $_REQUEST['pageid']);
       }
-      print(textile(stripslashes($_REQUEST['value'])));
+      if (isset($_REQUEST['textile'])) {
+        print(textile(stripslashes($_REQUEST['value'])));
+      } else {
+        print(stripslashes($_REQUEST['value']));
+      }
     } else {
       $content = get_block_data($db, $_REQUEST['pageid'], $_REQUEST['id'], false);
       $page = get_page_by_id($db, $_REQUEST['pageid']);

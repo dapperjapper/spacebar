@@ -40,6 +40,22 @@ function template_head ($pageid, $editableclass = "editable") {
             <script type="text/javascript" >
             $(document).ready(function() {
               $(".' . $editableclass . '").editable("' . ROOT_DIR . '/system/edit.php", {
+                submitdata: {pageid: "' . $pageid . '", textile: "yes"},
+                loaddata: {pageid: "' . $pageid . '"},
+                loadurl: "' . ROOT_DIR . '/system/load.php",
+                type: "autogrow",
+                cancel: "Cancel",
+                submit: "OK",
+                indicator: "Saving...",
+                tooltip: "Double click to edit...",
+                event: "dblclick",
+                onblur: "ignore",
+                autogrow: {
+                  lineHeight: 16,
+                  minHeight: 32
+                }
+              });
+              $(".' . $editableclass . '-notextile").editable("' . ROOT_DIR . '/system/edit.php", {
                 submitdata: {pageid: "' . $pageid . '"},
                 loaddata: {pageid: "' . $pageid . '"},
                 loadurl: "' . ROOT_DIR . '/system/load.php",

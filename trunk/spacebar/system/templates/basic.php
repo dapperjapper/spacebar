@@ -13,7 +13,7 @@ $title = get_block_data($db, $page['id'], "title", false);
 <title><?=$title;?></title>
 </head>
 <body>
-<h1 class="editable" id="title" ><?=$title;?></h1>
+<h1 class="editable-notextile" id="title" ><?=$title;?></h1>
 <small>published <?=$datepub?></small>
 <?=edit_link($page['id'], 'title', "Edit title");?>
 <div class="editable" id="content" ><?=get_block_data($db, $page['id'], "content");?></div>
