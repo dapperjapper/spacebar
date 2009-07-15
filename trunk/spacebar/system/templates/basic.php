@@ -1,4 +1,5 @@
 <?php
+//If datepub hasn't been set, do it!
 $datepub = get_block_data($db, $page['id'], "datepub", false);
 if ($datepub == "") {
   $datepub = date("D M j Y");
@@ -10,13 +11,14 @@ $title = get_block_data($db, $page['id'], "title", false);
 <html>
 <head>
 <?=template_head($page['id']);?>
+<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR;?>/system/templates/sb_parts/style.css" />
 <title><?=$title;?></title>
 </head>
 <body>
-<h1 class="editable-notextile" id="title" ><?=$title;?></h1>
+<?php include('sb_parts/header.php'); ?>
+<?=block($db, $page['id'], "title", "h1", false, $title);?>
 <small>published <?=$datepub?></small>
-<?=edit_link($page['id'], 'title', "Edit title");?>
-<div class="editable" id="content" ><?=get_block_data($db, $page['id'], "content");?></div>
-<?=edit_link($page['id'], 'content', "Edit content");?>
+<?=block($db, $page['id'], "content");?>
+<?php include('sb_parts/footer.php'); ?>
 </body>
 </html>
