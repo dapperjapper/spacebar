@@ -11,14 +11,14 @@ $title = get_block_data($db, $page['id'], "title", false);
 <html>
 <head>
 <?=template_head($page['id']);?>
-<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR;?>/system/templates/sb_parts/style.css" />
+<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR;?>/system/templates/parts/style.css" />
 <title><?=$title;?></title>
 </head>
 <body>
-<?php include('sb_parts/header.php'); ?>
+<?php include('parts/header.php'); ?>
 <?=block($db, $page['id'], "title", "h1", false, $title);?>
 <small>published <?=$datepub?></small>
 <?=block($db, $page['id'], "content");?>
-<?php include('sb_parts/footer.php'); ?>
+<?php include('parts/footer.php'); ?>
 </body>
 </html>
