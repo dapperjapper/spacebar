@@ -218,7 +218,7 @@ class Textile
     var $pnct;
     var $rel;
     var $fn;
-    
+
     var $shelf = array();
     var $restricted = false;
     var $noimage = false;
@@ -226,7 +226,7 @@ class Textile
     var $url_schemes = array();
     var $glyph = array();
     var $hu = '';
-    
+
     var $ver = '2.0.0';
     var $rev = '$Rev: 216 $';
 
@@ -466,13 +466,13 @@ class Textile
     function fList($m)
     {
         $text = explode("\n", $m[0]);
-        foreach($text as $line) {
-            $nextline = next($text);
+        foreach($text as $nr => $line) {
+            $nextline = isset($text[$nr+1]) ? $text[$nr+1] : false;
             if (preg_match("/^([#*]+)($this->a$this->c) (.*)$/s", $line, $m)) {
                 list(, $tl, $atts, $content) = $m;
                 $nl = '';
                 if (preg_match("/^([#*]+)\s.*/", $nextline, $nm))
-                	$nl = $nm[1];
+                  $nl = $nm[1];
                 if (!isset($lists[$tl])) {
                     $lists[$tl] = true;
                     $atts = $this->pba($atts);
