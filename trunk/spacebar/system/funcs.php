@@ -31,7 +31,7 @@ function get_templates () {
   return array_diff($list, array('.', '..'));
 }
 
-function template_head ($pageid, $editableclass = "editable") {
+function template_head ($pageid) {
   if (logged_in()) {
     return '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
@@ -39,7 +39,7 @@ function template_head ($pageid, $editableclass = "editable") {
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.autogrow.js" ></script>
             <script type="text/javascript" >
             $(document).ready(function() {
-              $(".' . $editableclass . '").editable("' . ROOT_DIR . '/system/edit.php", {
+              $(".editable").editable("' . ROOT_DIR . '/system/edit.php", {
                 submitdata: {pageid: "' . $pageid . '", textile: "yes"},
                 loaddata: {pageid: "' . $pageid . '"},
                 loadurl: "' . ROOT_DIR . '/system/load.php",
@@ -55,7 +55,7 @@ function template_head ($pageid, $editableclass = "editable") {
                   minHeight: 32
                 }
               });
-              $(".' . $editableclass . '-notextile").editable("' . ROOT_DIR . '/system/edit.php", {
+              $(".editable-notextile").editable("' . ROOT_DIR . '/system/edit.php", {
                 submitdata: {pageid: "' . $pageid . '"},
                 loaddata: {pageid: "' . $pageid . '"},
                 loadurl: "' . ROOT_DIR . '/system/load.php",
@@ -74,6 +74,25 @@ function template_head ($pageid, $editableclass = "editable") {
             });
             </script>';
   }
+}
+
+function block ($db, $pageid, $blockid, $tag = "div", $textile = true, $content = "a1b54v", $default = "", $edit_link = true) {
+  //If you use a block multiple times in a template (Example: title in <title> and <h1> tags),
+  //be sure to only request it once from the db. Save it to a variable, and use it as the 6th argument to this function.
+  //Clunky, but if the content default was "", empty content spaces wouldn't save any db requests.
+  if ($content == "a1b54v") {
+    $content = get_block_data($db, $pageid, $blockid, $textile, $default);
+  }
+  if ($textile) {
+    $to_return = '<' . $tag . ' class="editable" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
+  } else {
+    $to_return = '<' . $tag . ' class="editable-notextile" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
+  }
+  if ($edit_link) {
+    $to_return .= edit_link($pageid, $blockid, "Edit " . $blockid);
+  }
+
+  return $to_return;
 }
 
 function get_block_data ($db, $pageid, $blockid, $textile = true, $default = "") {
