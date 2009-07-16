@@ -16,7 +16,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 </head>
 <body>
 <h1>Hello VIP.</h1>
-<p>Your highness is currently logged in. Would you like to <form action="login" method="post"><input type="hidden" name="action" value="logout" /><input type="submit" value="logout?" /></form></p>
+<p>Your highness is currently logged in. Would you like to</p><form action="login" method="post"><input type="hidden" name="action" value="logout" /><input type="submit" value="logout?" /></form>
 </body>
 </html>
 <?php
