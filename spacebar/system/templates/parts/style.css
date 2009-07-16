@@ -19,6 +19,16 @@ body {
   padding: 8px;
 }
 
+.rounded_gray_button {
+	background: #999;
+	color: white;
+	padding: 2px 5px;
+	font-family: Arial, Verdana, sans-serif;
+	font-size: 11px;
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px;
+}
+
 h1 {
   font-size: 24px;
 }
