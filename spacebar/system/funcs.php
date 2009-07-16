@@ -27,8 +27,8 @@ function db_connection () {
 
 function get_templates () {
   $list = scandir("templates");
-  //Remove . and .. from the list.
-  return array_diff($list, array('.', '..'));
+  //Remove ., .., .svn, and parts from the list.
+  return array_diff($list, array('.', '..', '.svn', 'parts'));
 }
 
 function template_head ($pageid) {
