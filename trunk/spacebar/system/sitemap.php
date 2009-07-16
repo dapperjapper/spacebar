@@ -9,7 +9,11 @@ $pages = get_all_pages($db);
 <ul>
 <?php
 foreach ($pages as $page) {
-  print '<li><a href="' . ROOT_DIR . '/' . $page['url'] . '" >' . ROOT_DIR . '/' . $page['url'] . '</a> <a href="' . ROOT_DIR . '/' . $page['url'] . '/delete" >X</a></li>';
+  print '<li><a href="' . ROOT_DIR . '/' . $page['url'] . '" >' . ROOT_DIR . '/' . $page['url'] . '</a>';
+  if (logged_in()) {
+    print '<a href="' . ROOT_DIR . '/' . $page['url'] . '/delete" >X</a>';
+  }
+  print '</li>';
 }
 ?>
 </ul>
