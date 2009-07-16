@@ -1,23 +1,24 @@
 <?php
 include("textile.php");
 include("config.php");
+session_start();
 
 function logged_in () {
   $realusername = LOGIN_USERNAME;
   $realpassword = LOGIN_PASSWORD;
-  $username = $_COOKIE["username"];
-  $password = $_COOKIE["password"];
+  $username = $_SESSION["username"];
+  $password = $_SESSION["password"];
   return($username==$realusername and $password==$realpassword);
 }
 
 function login ($username, $password) {
-  setcookie("username", $username);
-  setcookie("password", $password);
+  $_SESSION["username"] = $username;
+  $_SESSION["password"] = $password;
 }
 
 function logout () {
-  setcookie("username");
-  setcookie("password");
+  unset($_SESSION["username"]);
+  unset($_SESSION["password"]);
 }
 
 function db_connection () {
