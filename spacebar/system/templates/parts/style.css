@@ -89,7 +89,6 @@ h1 {
 #breadcrumbs li {
   display: inline;
   margin-left: -20px;
-  white-space:nowrap;
 }
 
 #breadcrumbs a {
