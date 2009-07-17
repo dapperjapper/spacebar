@@ -53,7 +53,7 @@ function template_head ($pageid) {
                 indicator: "Saving...",
                 tooltip: "Double click to edit...",
                 event: "dblclick",
-                onblur: "ignore",
+                onblur: "submit",
                 autogrow: {
                   lineHeight: 16,
                   minHeight: 32
@@ -69,7 +69,7 @@ function template_head ($pageid) {
                 indicator: "Saving...",
                 tooltip: "Double click to edit...",
                 event: "dblclick",
-                onblur: "ignore",
+                onblur: "submit",
                 autogrow: {
                   lineHeight: 16,
                   minHeight: 32
