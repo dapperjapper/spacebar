@@ -33,6 +33,9 @@ $page = get_page_by_url($db, $url);
 
 if ($splitpath[0] == "login") {
   include("login.php");
+} elseif ($splitpath[0] == "logout") {
+  logout();
+  header("Location: " . ROOT_DIR);
 } elseif ($splitpath[0] == "sitemap") {
   include("sitemap.php");
 } elseif ($name == "delete") {
