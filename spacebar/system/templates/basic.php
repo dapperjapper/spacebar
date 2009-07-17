@@ -16,9 +16,9 @@ $title = get_block_data($db, $page['id'], "title", false);
 </head>
 <body>
 <?php include('parts/header.php'); ?>
-<?=block($db, $page['id'], "title", "h1", false, $title);?>
-<small>published <?=$datepub?></small>
-<?=block($db, $page['id'], "content");?>
+  <?=block($db, $page['id'], "title", "h1", false, $title);?>
+  <?=block($db, $page['id'], "content");?> 
+  <p class="published-date">published <?=$datepub?></p>
 <?php include('parts/footer.php'); ?>
 </body>
 </html>

@@ -34,7 +34,8 @@ function get_templates () {
 
 function template_head ($pageid) {
   $toreturn = '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />
-              <meta name="viewport" content="width=device-width, user-scalable=no" />';
+              <meta name="viewport" content="width=device-width, user-scalable=no" />
+              <link media="only screen and (device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">';
   if (logged_in()) {
     $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
@@ -88,13 +89,13 @@ function block ($db, $pageid, $blockid, $tag = "div", $textile = true, $content 
   if ($content == "a1b54v") {
     $content = get_block_data($db, $pageid, $blockid, $textile, $default);
   }
-  if ($textile) {
-    $to_return = '<' . $tag . ' class="editable" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
-  } else {
-    $to_return = '<' . $tag . ' class="editable-notextile" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
-  }
   if ($edit_link) {
     $to_return .= edit_link($pageid, $blockid, "Edit " . $blockid);
+  }
+  if ($textile) {
+    $to_return .= '<' . $tag . ' class="editable" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
+  } else {
+    $to_return .= '<' . $tag . ' class="editable-notextile" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
   }
 
   return $to_return;
@@ -174,7 +175,7 @@ function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   $result = "";
   
   if (preg_match("/iPhone/", $_SERVER['HTTP_USER_AGENT']) == 1) {
-    $result .= '<a class="rounded_gray_button" onclick="$(\'#' . $blockid . '\').dblclick();" >' . $text . '</a><br /><br />';
+    $result .= '<a class="edit-tab" onclick="$(\'#' . $blockid . '\').dblclick();" >' . $text . '</a>';
   }
   if ($noscript) {
     $result .= '<noscript>';
