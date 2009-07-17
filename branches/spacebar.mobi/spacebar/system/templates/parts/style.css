@@ -29,25 +29,13 @@ body {
 .rounded_gray_button {
 	background: #ccc;
 	color: white;
-	padding: 2px 15px;
+	padding: 2px 10px;
 	font-family: Arial, Verdana, sans-serif;
 	font-size: 12px;
 	-moz-border-radius: 8px;
 	-webkit-border-radius: 8px;
 	text-decoration: none;
 }
-
-.rounded_gray_button_login {
-	background: #ffba01;
-	color: white;
-	padding: 2px 15px;
-	font-family: Arial, Verdana, sans-serif;
-	font-size: 12px;
-	-moz-border-radius: 8px;
-	-webkit-border-radius: 8px;
-	text-decoration: none;
-}
-
 
 #logo-center .rounded_gray_button {
   position: absolute;
