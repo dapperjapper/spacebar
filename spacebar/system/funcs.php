@@ -35,49 +35,49 @@ function get_templates () {
 function template_head ($pageid) {
   $toreturn = '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />
               <meta name="viewport" content="width=device-width, user-scalable=no" />
-              <link media="only screen and (device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">';
+              <link media="only screen and (device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">
+              <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>';
   if (logged_in()) {
-    $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
-            <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
-            <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.autogrow.js" ></script>
-            <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.autogrow.js" ></script>
-            <link type="text/css" rel="stylesheet" href="' . ROOT_DIR . '/system/logged-in.css" />
-            <script type="text/javascript" >
-            $(document).ready(function() {
-              $(".editable").editable("' . ROOT_DIR . '/system/edit.php", {
-                submitdata: {pageid: "' . $pageid . '", textile: "yes"},
-                loaddata: {pageid: "' . $pageid . '"},
-                loadurl: "' . ROOT_DIR . '/system/load.php",
-                type: "autogrow",
-                cancel: "Cancel",
-                submit: "OK",
-                indicator: "Saving...",
-                tooltip: "Double click to edit...",
-                event: "dblclick",
-                onblur: "submit",
-                autogrow: {
-                  lineHeight: 16,
-                  minHeight: 32
-                }
-              });
-              $(".editable-notextile").editable("' . ROOT_DIR . '/system/edit.php", {
-                submitdata: {pageid: "' . $pageid . '"},
-                loaddata: {pageid: "' . $pageid . '"},
-                loadurl: "' . ROOT_DIR . '/system/load.php",
-                type: "autogrow",
-                cancel: "Cancel",
-                submit: "OK",
-                indicator: "Saving...",
-                tooltip: "Double click to edit...",
-                event: "dblclick",
-                onblur: "submit",
-                autogrow: {
-                  lineHeight: 16,
-                  minHeight: 32
-                }
-              });
-            });
-            </script>';
+    $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
+                  <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.autogrow.js" ></script>
+                  <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.autogrow.js" ></script>
+                  <link type="text/css" rel="stylesheet" href="' . ROOT_DIR . '/system/logged-in.css" />
+                  <script type="text/javascript" >
+                  $(document).ready(function() {
+                    $(".editable").editable("' . ROOT_DIR . '/system/edit.php", {
+                      submitdata: {pageid: "' . $pageid . '", textile: "yes"},
+                      loaddata: {pageid: "' . $pageid . '"},
+                      loadurl: "' . ROOT_DIR . '/system/load.php",
+                      type: "autogrow",
+                      cancel: "Cancel",
+                      submit: "OK",
+                      indicator: "Saving...",
+                      tooltip: "Double click to edit...",
+                      event: "dblclick",
+                      onblur: "submit",
+                      autogrow: {
+                        lineHeight: 16,
+                        minHeight: 32
+                      }
+                    });
+                    $(".editable-notextile").editable("' . ROOT_DIR . '/system/edit.php", {
+                      submitdata: {pageid: "' . $pageid . '"},
+                      loaddata: {pageid: "' . $pageid . '"},
+                      loadurl: "' . ROOT_DIR . '/system/load.php",
+                      type: "autogrow",
+                      cancel: "Cancel",
+                      submit: "OK",
+                      indicator: "Saving...",
+                      tooltip: "Double click to edit...",
+                      event: "dblclick",
+                      onblur: "submit",
+                      autogrow: {
+                        lineHeight: 16,
+                        minHeight: 32
+                      }
+                    });
+                  });
+                  </script>';
   }
   return $toreturn;
 }
@@ -185,7 +185,7 @@ function delete_page ($db, $pageid) {
 
 function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   $result = "";
-  
+
   if (preg_match("/iPhone/", $_SERVER['HTTP_USER_AGENT']) == 1) {
     $result .= '<a class="edit-tab" onclick="$(\'#' . $blockid . '\').dblclick();" >' . $text . '</a>';
   }
@@ -196,7 +196,7 @@ function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   if ($noscript) {
     $result .= '</noscript>';
   }
-  
+
   if (logged_in()) {
     return $result;
   }
