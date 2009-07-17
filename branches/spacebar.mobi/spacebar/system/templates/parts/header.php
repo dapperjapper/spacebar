@@ -1,9 +1,13 @@
 <div id="logo-outline" >
 <div id="logo-center" >
 <a href="<?=ROOT_DIR;?>"><img id="logo" src="<?=ROOT_DIR;?>/system/templates/parts/logo.png" /></a>
+
 <?php if (logged_in()) { ?>
-<a class="rounded_gray_button" >logout</a>
+  <a class="rounded_gray_button" href="<?=ROOT_DIR;?>/logout">logout</a>
+<?php } else { ?>
+  <a class="rounded_gray_button_login" href="<?=ROOT_DIR;?>/login">login</a>
 <?php } ?>
+
 </div>
 </div>
 
