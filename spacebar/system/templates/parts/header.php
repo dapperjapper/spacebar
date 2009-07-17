@@ -16,7 +16,12 @@
   <li><a href="#">Poems</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" />
   <li><a href="#">My Animal Series</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" />
   <li><a href="#">Mammals</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" />
-  <li><a id="select-crumb" href="#">Squirrel</a><img src="<?=ROOT_DIR;?>/system/templates/parts/outline-breadcrumbs-divider.png" /></li>
+  <li><a id="select-crumb" href="#">Squirrel</a><img src="<?=ROOT_DIR;?>/system/templates/parts/outline-breadcrumbs-divider.png" />
+  <select id="select" onchange="getElementById('select-crumb').innerHTML=this.value" style="margin-left: -85px; opacity: 0;" >
+    <option>Lion</option>
+    <option>Squirrel</option>
+  </select>
+  </li>
 </ul>
 
 <div id="container" >
