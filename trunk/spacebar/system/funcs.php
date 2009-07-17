@@ -33,7 +33,8 @@ function get_templates () {
 }
 
 function template_head ($pageid) {
-  $toreturn = '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />';
+  $toreturn = '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />
+              <meta name="viewport" content="width=device-width, user-scalable=no" />';
   if (logged_in()) {
     $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
