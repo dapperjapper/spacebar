@@ -34,7 +34,13 @@ function get_templates () {
 
 function template_head ($pageid) {
   if (logged_in()) {
-    return '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
+    return '<style type="text/css" >
+            .editable, .editable-notextile {
+              background-color: rgb(255, 255, 221);
+              border: 1px solid rgb(255, 215, 0);
+            }
+            </style>
+            <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.autogrow.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.autogrow.js" ></script>
