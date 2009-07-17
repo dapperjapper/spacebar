@@ -33,11 +33,13 @@ function get_templates () {
 }
 
 function template_head ($pageid) {
+  $toreturn = '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />';
   if (logged_in()) {
-    return '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
+    $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.autogrow.js" ></script>
             <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.autogrow.js" ></script>
+            <link type="text/css" rel="stylesheet" href="' . ROOT_DIR . '/system/logged-in.css" />
             <script type="text/javascript" >
             $(document).ready(function() {
               $(".editable").editable("' . ROOT_DIR . '/system/edit.php", {
@@ -75,6 +77,7 @@ function template_head ($pageid) {
             });
             </script>';
   }
+  return $toreturn;
 }
 
 function block ($db, $pageid, $blockid, $tag = "div", $textile = true, $content = "a1b54v", $default = "", $edit_link = true) {
@@ -168,7 +171,10 @@ function delete_page ($db, $pageid) {
 
 function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   $result = "";
-
+  
+  if (preg_match("/iPhone/", $_SERVER['HTTP_USER_AGENT']) == 1) {
+    $result .= '<a class="rounded_gray_button" onclick="$(\'#' . $blockid . '\').dblclick();" >' . $text . '</a><br /><br />';
+  }
   if ($noscript) {
     $result .= '<noscript>';
   }
@@ -176,8 +182,10 @@ function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   if ($noscript) {
     $result .= '</noscript>';
   }
-
-  return $result;
+  
+  if (logged_in()) {
+    return $result;
+  }
 }
 
 function textile ($in, $safe = true) {
