@@ -157,9 +157,21 @@ function get_all_pages ($db) {
   return $result->fetchAll();
 }
 
-function get_subpages ($db, $pageurl, $limit=-1, $offset=0) {
+function get_subpages ($db, $pageurl, $depth=0, $limit=-1, $offset=0) {
+  //FIXME limit doesn't work if depth is not -1
   $result = $db->query("SELECT * FROM pages WHERE url GLOB '" . $pageurl . "/*' LIMIT " . $limit . " OFFSET " . $offset . ";");
-  return $result->fetchAll();
+  $pages = $result->fetchAll();
+  $basedepth = count(split('/', $pageurl));
+  if ($depth == -1) {
+    return $pages;
+  } else {
+    foreach ($pages as $page) {
+      if (count(split('/', $page['url'])) < $basedepth+($depth+2)) {
+        $filteredpages[] = $page;
+      }
+    }
+    return $filteredpages;
+  }
 }
 
 function create_page ($db, $url, $template) {
