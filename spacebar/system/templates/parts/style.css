@@ -18,6 +18,10 @@ body {
   height: 36px;
 }
 
+#logo-center img {
+  border: none;
+}
+
 #container {
   padding: 8px;
 }
@@ -39,10 +43,10 @@ body {
   top: 9px;
 }
 
-.rounded_gray_button:hover, #breadcrumbs a:hover  {
+/*.rounded_gray_button:hover, #breadcrumbs a:hover  {
 	background: #ddd;
 }
-
+*/
 h1 {
   font-size: 24px;
 }
@@ -59,10 +63,10 @@ h1 {
 	-webkit-border-top-right-radius: 10px;
 }
 
-.edit-tab:hover {
+/*.edit-tab:hover {
 	background: #ffd700;
 }
-
+*/
 #title {
   margin-top: 1px;
 }
