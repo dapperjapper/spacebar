@@ -6,7 +6,11 @@
 <?php } ?>
 </div>
 </div>
-<div id="breadcrumbs">
-  <a href="#">Susan Smith</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" /><a href="#">Poems</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" /><a href="#">Squirrel</a><img src="<?=ROOT_DIR;?>/system/templates/parts/select-end.png" /><a id="select-crumb" href="#">Select</a><img src="<?=ROOT_DIR;?>/system/templates/parts/select-tip.png" />
-</div>
+
+<ul id="breadcrumbs">
+  <li><a href="#">Susan Smith</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" /></li>
+  <li><a href="#">Poems</a><img src="<?=ROOT_DIR;?>/system/templates/parts/breadcrumbs-divider.png" />
+  <li><a id="select-crumb" href="#">Squirrel</a><img src="<?=ROOT_DIR;?>/system/templates/parts/outline-breadcrumbs-divider.png" /></li>
+</ul>
+
 <div id="container" >

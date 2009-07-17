@@ -82,7 +82,13 @@ h1 {
 }
 
 #breadcrumbs {
-  margin: 10px 7px;
+  margin: 10px 0 10px 30px;
+  padding: 0;
+}
+
+#breadcrumbs li {
+  display: inline;
+  margin-left: -20px;
 }
 
 #breadcrumbs a {
@@ -90,7 +96,7 @@ h1 {
   font-size: 15px;
   background: #ccc;
   color: white;
-  padding: 3px;
+  padding: 3px 0 3px 15px;
   text-decoration: none;
 }
 
@@ -105,8 +111,9 @@ h1 {
   background: white !important;
   border-top: 1px #ccc solid;
   border-bottom: 1px #ccc solid;
+  border-left: 1px #ccc solid;
   color: #ccc !important;
   height: 19px !important;
-  padding: 2px !important;
- 
+  padding-top: 2px !important;
+  padding-bottom: 2px !important;
 }
