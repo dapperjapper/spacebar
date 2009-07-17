@@ -35,7 +35,8 @@ if ($splitpath[0] == "login") {
   include("login.php");
 } elseif ($splitpath[0] == "logout") {
   logout();
-  header("Location: " . ROOT_DIR);
+  $redirect = ROOT_DIR? ROOT_DIR : '.';
+  header("Location: " . $redirect);
 } elseif ($splitpath[0] == "sitemap") {
   include("sitemap.php");
 } elseif ($name == "delete") {
