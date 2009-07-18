@@ -99,7 +99,7 @@ h1 {
 
 #breadcrumbs li {
   display: inline;
-  margin-left: -20px;
+  margin-left: -15px;
 }
 
 #breadcrumbs a {
@@ -107,7 +107,7 @@ h1 {
   font-size: 15px;
   background: #ccc;
   color: white;
-  padding: 3px 0 3px 15px;
+  padding: 3px 5px 3px 20px;
   text-decoration: none;
 }
 
