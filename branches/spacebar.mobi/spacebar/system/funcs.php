@@ -159,12 +159,21 @@ function get_all_pages ($db) {
 
 function get_subpages ($db, $pageurl, $depth=0, $limit=-1, $offset=0) {
   //FIXME limit doesn't work if depth is not -1
-  $result = $db->query("SELECT * FROM pages WHERE url GLOB '" . $pageurl . "/*' LIMIT " . $limit . " OFFSET " . $offset . ";");
+  if ($pageurl == "") {
+    $result = $db->query("SELECT * FROM pages WHERE url != '' LIMIT " . $limit . " OFFSET " . $offset . ";");
+  } else {
+    $result = $db->query("SELECT * FROM pages WHERE url GLOB '" . $pageurl . "/*' LIMIT " . $limit . " OFFSET " . $offset . ";");
+  }
   $pages = $result->fetchAll();
-  $basedepth = count(split('/', $pageurl));
+  if ($pageurl == "") {
+    $basedepth = 0;
+  } else {
+    $basedepth = count(split('/', $pageurl));
+  }
   if ($depth == -1) {
     return $pages;
   } else {
+    $filteredpages = array();
     foreach ($pages as $page) {
       if (count(split('/', $page['url'])) < $basedepth+($depth+2)) {
         $filteredpages[] = $page;
