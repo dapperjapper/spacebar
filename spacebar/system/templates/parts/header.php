@@ -26,10 +26,11 @@ foreach ($tempsplitpath as $key => $crumb) {
 }
 ?>
 <li><a id="select-crumb" href="#">Select...</a><img src="<?=ROOT_DIR;?>/system/templates/parts/outline-breadcrumbs-divider.png" />
-<select id="select" onchange="if (this.value=='new') { $('#select-crumb').html('New...'); $('#newpagespan').show(); } else if (this.value=='select') { $('#select-crumb').html('Select...'); $('#newpagespan').hide(); } else { window.location='<?=ROOT_DIR;?>/'+this.value; }" style="position: fixed; opacity: 0; margin-top: 6px; margin-left: -105px;" >
-<option value="select" selected >Select...</option>
+<select id="select" onchange="if (this.value=='new') { $('#select-crumb').html('New...'); $('#newpagespan').show(); } else if (this.value=='del') { window.location='<?=ROOT_DIR;?>/<?php if ($url!="") { echo $url . "/"; }?>delete' } else if (this.value=='sel') { $('#select-crumb').html('Select...'); $('#newpagespan').hide(); } else { window.location='<?=ROOT_DIR;?>/'+this.value; }" style="position: fixed; opacity: 0; margin-top: 6px; margin-left: -105px;" >
+<option value="sel" selected >Select...</option>
 <?php if (logged_in()) { ?>
 <option value="new" >New...</option>
+<option value="del" >&lt;-Delete</option>
 <?php
 }
 $subpages = get_subpages($db, $page['url']);
