@@ -28,8 +28,10 @@ foreach ($tempsplitpath as $key => $crumb) {
 <li><a id="select-crumb" href="#">Select...</a><img src="<?=ROOT_DIR;?>/system/templates/parts/outline-breadcrumbs-divider.png" />
 <select id="select" onchange="if (this.value=='new') { $('#select-crumb').html('New...'); $('#newpagespan').show(); } else if (this.value=='select') { $('#select-crumb').html('Select...'); $('#newpagespan').hide(); } else { window.location='<?=ROOT_DIR;?>/'+this.value; }" style="position: fixed; opacity: 0; margin-top: 6px; margin-left: -105px;" >
 <option value="select" selected >Select...</option>
+<?php if (logged_in()) { ?>
 <option value="new" >New...</option>
 <?php
+}
 $subpages = get_subpages($db, $page['url']);
 foreach ($subpages as $subpage) {
   $pagetitle = get_block_data($db, $subpage['id'], "title", false);
@@ -37,10 +39,12 @@ foreach ($subpages as $subpage) {
 }
 ?>
 </select>
+<?php if (logged_in()) { ?>
 <span style="display: none;" id="newpagespan" >
 <input style="margin-left: 20px;" id="newpagetextfield" />
 <button onclick="window.location = '<?=ROOT_DIR;?>/<?php if ($url!="") { echo $url . "/"; }?>'+$('#newpagetextfield').val();" >Go</button>
 </span>
+<?php } ?>
 </li>
 </ul>
 
