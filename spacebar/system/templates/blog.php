@@ -15,7 +15,6 @@ $title = get_block_data($db, $page['id'], "title", false);
 <html>
 <head>
 <?=template_head($page['id']);?>
-<link rel="stylesheet" type="text/css" href="<?=ROOT_DIR;?>/system/templates/parts/style.css" />
 <title><?=$title;?></title>
 </head>
 <body>

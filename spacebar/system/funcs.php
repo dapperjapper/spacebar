@@ -32,11 +32,16 @@ function get_templates () {
   return array_diff($list, array('.', '..', '.svn', 'parts'));
 }
 
+function all_head () {
+  return '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />
+          <meta name="viewport" content="width=device-width, user-scalable=no" />
+          <link media="only screen and (device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">
+          <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
+          <link rel="stylesheet" type="text/css" href="' . ROOT_DIR . '/system/templates/parts/style.css" />';
+}
+
 function template_head ($pageid) {
-  $toreturn = '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />
-              <meta name="viewport" content="width=device-width, user-scalable=no" />
-              <link media="only screen and (device-width: 480px)" href="iphone.css" type= "text/css" rel="stylesheet">
-              <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>';
+  $toreturn .= all_head();
   if (logged_in()) {
     $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
                   <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.autogrow.js" ></script>
