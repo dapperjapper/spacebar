@@ -5,7 +5,7 @@
 <?php if (logged_in()) { ?>
   <a class="rounded_gray_button" href="<?=ROOT_DIR;?>/logout">logout</a>
 <?php } else { ?>
-  <a class="rounded_gray_button" style="background: #ffba01;" href="<?=ROOT_DIR;?>/login">login</a>
+  <a class="rounded_gray_button" style="background-color: #ffba01;" href="<?=ROOT_DIR;?>/login">login</a>
 <?php } ?>
 
 </div>
