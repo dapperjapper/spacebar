@@ -44,7 +44,7 @@ function all_head () {
     $toreturn .= '<link rel="stylesheet" type="text/css" href="' . ROOT_DIR . '/system/templates/parts/style.css" />';
   }
 
-  return $to_return;
+  return $toreturn;
 }
 
 function template_head ($pageid) {
