@@ -50,4 +50,3 @@ foreach ($subpages as $subpage) {
 </ul>
 
 <div id="container" >
-test
