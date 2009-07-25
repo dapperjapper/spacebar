@@ -41,7 +41,7 @@ function all_head () {
                 <link rel="stylesheet" type="text/css" href="' . ROOT_DIR . '/system/templates/parts/style.css" />';
 
   if (is_iphone()) {
-    $toreturn .= '<link rel="stylesheet" type="text/css" href="' . ROOT_DIR . '/system/templates/parts/style.css" />';
+    $toreturn .= '<link rel="stylesheet" type="text/css" href="' . ROOT_DIR . '/system/templates/parts/iphone.css" />';
   }
 
   return $toreturn;
