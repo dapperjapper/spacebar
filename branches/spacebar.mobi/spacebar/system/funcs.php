@@ -36,7 +36,7 @@ function all_head () {
   $toreturn .= '<link rel="icon" type="image/vnd.microsoft.icon" href="' . ROOT_DIR . '/favicon.ico" />
                 <meta name="viewport" content="width=device-width, user-scalable=no" />
                 <link rel="apple-touch-icon" href="' . ROOT_DIR . '/system/templates/parts/web-clip.png"/>
-                <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+                <meta name="apple-mobile-web-app-capable" content="yes" />
                 <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.js" ></script>
                 <link rel="stylesheet" type="text/css" href="' . ROOT_DIR . '/system/templates/parts/style.css" />';
 
