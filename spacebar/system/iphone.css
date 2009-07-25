@@ -1,2 +1,7 @@
-/* This stylesheet is not yet used. */
+#breadcrumbs a {
+  padding-bottom: 4px;
+}
 
+#select-crumb {
+  padding-bottom: 3px !important;
+}
