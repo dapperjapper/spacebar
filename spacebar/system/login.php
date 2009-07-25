@@ -9,11 +9,14 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
 ?>
 <html>
 <head>
+<?=all_head();?>
 </head>
 <body>
+<?php include('templates/parts/header.php'); ?>
 <h1>Hello VIP.</h1>
 <p>Your highness is currently logged in. Would you like to <a href="logout" >logout?</a></p>
 <p>You could also <a href="<?=ROOT_DIR;?>/" >go home</a>.</p>
+<?php include('templates/parts/footer.php'); ?>
 </body>
 </html>
 <?php
