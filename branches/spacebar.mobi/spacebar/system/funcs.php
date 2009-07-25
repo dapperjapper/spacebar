@@ -200,7 +200,7 @@ function delete_page ($db, $pageid) {
 function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   $result = "";
 
-  if (preg_match("/iPhone/", $_SERVER['HTTP_USER_AGENT']) == 1) {
+  if (is_iphone()) {
     $result .= '<a class="edit-tab" onclick="$(\'#' . $blockid . '\').dblclick();" >' . $text . '</a>';
   }
   if ($noscript) {
@@ -214,6 +214,10 @@ function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
   if (logged_in()) {
     return $result;
   }
+}
+
+function is_iphone () {
+  return preg_match("/iPhone/", $_SERVER['HTTP_USER_AGENT']) == 1;
 }
 
 function textile ($in, $safe = true) {
