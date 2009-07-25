@@ -42,7 +42,7 @@ foreach ($subpages as $subpage) {
 </select>
 <?php if (logged_in()) { ?>
 <span style="display: none;" id="newpagespan" >
-<input style="margin-left: 20px;" id="newpagetextfield" />
+<input style="margin-left: 20px;" id="newpagetextfield" autocapitalize="off" />
 <button onclick="window.location = '<?=ROOT_DIR;?>/<?php if ($url!="") { echo $url . "/"; }?>'+$('#newpagetextfield').val();" >Go</button>
 </span>
 <?php } ?>
