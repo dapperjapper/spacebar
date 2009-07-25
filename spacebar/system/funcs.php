@@ -224,7 +224,7 @@ function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
 }
 
 function is_iphone () {
-  return preg_match("/iPhone/", $_SERVER['HTTP_USER_AGENT']) == 1;
+  return (stripos($_SERVER['HTTP_USER_AGENT'], "iphone") != false) or (stripos($_SERVER['HTTP_USER_AGENT'], "ipod") != false);
 }
 
 function textile ($in, $safe = true) {
