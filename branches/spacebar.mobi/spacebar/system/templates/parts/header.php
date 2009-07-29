@@ -22,7 +22,7 @@ foreach ($tempsplitpath as $key => $crumb) {
   $crumbsplitpath = array_slice($splitpath, 0, $key);
   $crumburl = implode("/", $crumbsplitpath);
   $crumbpage = get_page_by_url($db, $crumburl);
-  $crumbtitle = get_block_data($db, $crumbpage['id'], "title", false, "Untitled");
+  $crumbtitle = get_block_data($db, $crumbpage['id'], "title", false, ucwords($crumbsplitpath[count($crumbsplitpath)-1]));
   echo '<li><a href="' . ROOT_DIR . '/' . $crumburl . '">' . $crumbtitle . '</a><img src="' . ROOT_DIR . '/system/templates/parts/breadcrumbs-divider.png" /></li>';
 }
 ?>
@@ -36,7 +36,8 @@ foreach ($tempsplitpath as $key => $crumb) {
 }
 $subpages = get_subpages($db, $page['url']);
 foreach ($subpages as $subpage) {
-  $pagetitle = get_block_data($db, $subpage['id'], "title", false, "Untitled");
+  $subpagesplitpath = split('/', $subpage['url']);
+  $pagetitle = get_block_data($db, $subpage['id'], "title", false, ucwords($subpagesplitpath[count($subpagesplitpath)-1]));
   echo '<option value="' . $subpage['url'] . '" >' . $pagetitle . '</option>';
 }
 ?>
