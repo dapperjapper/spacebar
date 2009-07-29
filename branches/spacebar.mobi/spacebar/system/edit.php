@@ -2,8 +2,9 @@
 include("funcs.php");
 
 $db = db_connection();
+$page = get_page_by_id($db, $_REQUEST['pageid']);
 
-if (logged_in()) {
+if (logged_in($db, $page['url'])) {
   if (isset($_REQUEST['pageid']) && isset($_REQUEST['id'])) {
     if (isset($_REQUEST['value'])) {
       change_block($db, $_REQUEST['pageid'], $_REQUEST['id'], $_REQUEST['value']);
@@ -18,7 +19,6 @@ if (logged_in()) {
       }
     } else {
       $content = get_block_data($db, $_REQUEST['pageid'], $_REQUEST['id'], false);
-      $page = get_page_by_id($db, $_REQUEST['pageid']);
       $url = $page['url'];
       ?>
 <html>

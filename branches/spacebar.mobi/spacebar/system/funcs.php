@@ -3,12 +3,22 @@ include("textile.php");
 include("config.php");
 session_start();
 
-function logged_in () {
-  $realusername = LOGIN_USERNAME;
-  $realpassword = LOGIN_PASSWORD;
+function logged_in ($db, $url = "") {
+  $adminusername = LOGIN_USERNAME;
+  $adminpassword = LOGIN_PASSWORD;
   $username = $_SESSION["username"];
   $password = $_SESSION["password"];
-  return($username==$realusername and $password==$realpassword);
+  if ($username==$adminusername and $password==$adminpassword) {
+    return true;
+  } else {
+    $splitpath = split("/", $url);
+    $page = get_page_by_url($db, "members/" . $splitpath[0]);
+    if ($page == "") {
+      return false;
+    } else {
+      return $username==$splitpath[0] and $password==get_block_data($db, $page['id'], "password", false);
+    }
+  }
 }
 
 function login ($username, $password) {
@@ -48,9 +58,9 @@ function all_head () {
   return $toreturn;
 }
 
-function template_head ($pageid) {
+function template_head ($db, $page) {
   $toreturn .= all_head();
-  if (logged_in()) {
+  if (logged_in($db, $page['url'])) {
     $toreturn .= '<script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.js" ></script>
                   <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.jeditable.autogrow.js" ></script>
                   <script type="text/javascript" src="' . ROOT_DIR . '/system/jquery.autogrow.js" ></script>
@@ -58,8 +68,8 @@ function template_head ($pageid) {
                   <script type="text/javascript" >
                   $(document).ready(function() {
                     $(".editable").editable("' . ROOT_DIR . '/system/edit.php", {
-                      submitdata: {pageid: "' . $pageid . '", textile: "yes"},
-                      loaddata: {pageid: "' . $pageid . '"},
+                      submitdata: {pageid: "' . $page['id'] . '", textile: "yes"},
+                      loaddata: {pageid: "' . $page['id'] . '"},
                       loadurl: "' . ROOT_DIR . '/system/load.php",
                       type: "autogrow",
                       cancel: "Cancel",
@@ -74,8 +84,8 @@ function template_head ($pageid) {
                       }
                     });
                     $(".editable-notextile").editable("' . ROOT_DIR . '/system/edit.php", {
-                      submitdata: {pageid: "' . $pageid . '"},
-                      loaddata: {pageid: "' . $pageid . '"},
+                      submitdata: {pageid: "' . $page['id'] . '"},
+                      loaddata: {pageid: "' . $page['id'] . '"},
                       loadurl: "' . ROOT_DIR . '/system/load.php",
                       type: "autogrow",
                       cancel: "Cancel",
@@ -103,7 +113,7 @@ function block ($db, $pageid, $blockid, $tag = "div", $textile = true, $content 
     $content = get_block_data($db, $pageid, $blockid, $textile, $default);
   }
   if ($edit_link) {
-    $to_return .= edit_link($pageid, $blockid, "Edit " . $blockid);
+    $to_return .= edit_link($db, $pageid, $blockid, "Edit " . $blockid);
   }
   if ($textile) {
     $to_return .= '<' . $tag . ' class="editable" id="' . $blockid . '" >' . $content . '</' . $tag . '>';
@@ -205,7 +215,7 @@ function delete_page ($db, $pageid) {
   $db->query("DELETE FROM blocks WHERE pageid=" . sqlite_escape_string($pageid) . ";", SQLITE_BOTH, $sqlerror) or die($sqlerror);
 }
 
-function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
+function edit_link ($db, $pageid, $blockid, $text = "Edit", $noscript = true) {
   $result = "";
 
   if (is_iphone()) {
@@ -219,7 +229,8 @@ function edit_link ($pageid, $blockid, $text = "Edit", $noscript = true) {
     $result .= '</noscript>';
   }
 
-  if (logged_in()) {
+  $page = get_page_by_id($db, $pageid);
+  if (logged_in($db, $page['url'])) {
     return $result;
   }
 }

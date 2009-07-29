@@ -5,7 +5,7 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
   login($_POST['username'], $_POST['password']);
   header("Location: login");
 } else {
-  if (logged_in()) {
+  if (logged_in($db, "")) {
 ?>
 <html>
 <head>

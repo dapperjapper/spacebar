@@ -1,9 +1,8 @@
 <?php
-if (logged_in()) {
-  $splitpath = array_slice($splitpath, 0, -1);
-  $name = $splitpath[count($splitpath)-1];
-  $url = implode('/', $splitpath);
-} else {
+$splitpath = array_slice($splitpath, 0, -1);
+$name = $splitpath[count($splitpath)-1];
+$url = implode('/', $splitpath);
+if (!logged_in($db, $url)) {
   die("Bad boy/girl! Login first!");
 }
 ?>

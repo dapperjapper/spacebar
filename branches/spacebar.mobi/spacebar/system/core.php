@@ -55,7 +55,7 @@ if ($splitpath[0] == "login") {
   }
 } else {
   if ($page == '') {
-    if (logged_in()) {
+    if (logged_in($db, $url)) {
       include('newpage.php');
     } else {
       include('notfound.php');
