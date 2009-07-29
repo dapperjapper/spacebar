@@ -7,12 +7,11 @@ function logged_in ($db, $url = "") {
   $who = logged_in_as($db);
   if ($who === false) {
     return false;
-  }
-  if ($who === true) {
+  } elseif ($who === true) {
     return true;
   } else {
     $splitpath = split("/", $url);
-    return $who == $splitpath[0];
+    return ($who == $splitpath[0]) or (($who == $splitpath[1]) and ($splitpath[0] == "members"));
   }
 }
 
