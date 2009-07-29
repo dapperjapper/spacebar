@@ -4,6 +4,19 @@ include("config.php");
 session_start();
 
 function logged_in ($db, $url = "") {
+  $who = logged_in_as($db);
+  if ($who === false) {
+    return false;
+  }
+  if ($who === true) {
+    return true;
+  } else {
+    $splitpath = split("/", $url);
+    return $who == $splitpath[0];
+  }
+}
+
+function logged_in_as ($db) {
   $adminusername = LOGIN_USERNAME;
   $adminpassword = LOGIN_PASSWORD;
   $username = $_SESSION["username"];
@@ -11,12 +24,11 @@ function logged_in ($db, $url = "") {
   if ($username==$adminusername and $password==$adminpassword) {
     return true;
   } else {
-    $splitpath = split("/", $url);
-    $page = get_page_by_url($db, "members/" . $splitpath[0]);
-    if ($page == "") {
-      return false;
+    $page = get_page_by_url($db, "members/" . $username);
+    if ($page != "" and $password==get_block_data($db, $page['id'], "password", false)) {
+      return $username;
     } else {
-      return $username==$splitpath[0] and $password==get_block_data($db, $page['id'], "password", false);
+      return false;
     }
   }
 }
