@@ -10,7 +10,7 @@ $title = get_block_data($db, $page['id'], "title", false);
 ?>
 <html>
 <head>
-<?=template_head($page['id']);?>
+<?=template_head($db, $page);?>
 <title><?=$title;?></title>
 </head>
 <body>
