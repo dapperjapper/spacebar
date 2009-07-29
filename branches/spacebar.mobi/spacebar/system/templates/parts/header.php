@@ -2,11 +2,12 @@
 <div id="logo-center" >
 <a href="<?=ROOT_DIR;?>"><img id="logo" src="<?=ROOT_DIR;?>/system/templates/parts/logo.png" /></a>
 
-<?php if (logged_in($db, $url)) { ?>
-  <a class="rounded_gray_button" href="<?=ROOT_DIR;?>/logout">logout</a>
-<?php } else { ?>
-  <a class="rounded_gray_button" style="background-color: #ffba01;" href="<?=ROOT_DIR;?>/login">login</a>
-<?php } ?>
+<?php
+if (logged_in_as($db) != false) {
+  print '<a class="rounded_gray_button" href="' . ROOT_DIR . '/logout">logout</a>';
+} else {
+  print '<a class="rounded_gray_button" style="background-color: #ffba01;" href="' . ROOT_DIR . '/login">login</a>';
+} ?>
 
 </div>
 </div>
