@@ -39,6 +39,8 @@ if ($splitpath[0] == "login") {
   header("Location: " . $redirect);
 } elseif ($splitpath[0] == "sitemap") {
   include("sitemap.php");
+} elseif ($splitpath[0] == "register") {
+  include("register.php");
 } elseif ($name == "delete") {
   include("deletepage.php");
 } elseif ($name == "reallydelete") {
