@@ -218,7 +218,7 @@ function get_subpages ($db, $pageurl, $depth=0, $limit=-1, $offset=0) {
 }
 
 function create_page ($db, $url, $template) {
-  $db->query("INSERT INTO pages (url, template) VALUES ('" . sqlite_escape_string($url) . "', '" . sqlite_escape_string($_POST['template']) . "')", SQLITE_BOTH, $sqlerror) or die($sqlerror);
+  $db->query("INSERT INTO pages (url, template) VALUES ('" . sqlite_escape_string($url) . "', '" . sqlite_escape_string($template) . "')", SQLITE_BOTH, $sqlerror) or die($sqlerror);
 }
 
 function delete_page ($db, $pageid) {
